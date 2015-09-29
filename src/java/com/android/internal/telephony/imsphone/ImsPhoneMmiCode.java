@@ -1049,11 +1049,13 @@ public final class ImsPhoneMmiCode extends Handler implements MmiCode {
                 if ((ar.exception == null) && (msg.arg1 == 1)) {
                     boolean cffEnabled = (msg.arg2 == 1);
                     if (mIccRecords != null) {
-                        mPhone.setVoiceCallForwardingFlag(1, cffEnabled, mDialingNumber);
+                        mIccRecords.setVoiceCallForwardingFlag(1, cffEnabled, mDialingNumber);
+                        mPhone.setCallForwardingPreference(cffEnabled);
                     }
                 }
 
                 onSetComplete(msg, ar);
+                mPhone.updateCallForwardStatus();
                 break;
 
             case EVENT_QUERY_CF_COMPLETE:
@@ -1300,7 +1302,13 @@ public final class ImsPhoneMmiCode extends Handler implements MmiCode {
                         == CommandsInterface.SERVICE_CLASS_VOICE) {
             boolean cffEnabled = (info.status == 1);
             if (mIccRecords != null) {
+<<<<<<< HEAD
                 mPhone.setVoiceCallForwardingFlag(1, cffEnabled, info.number);
+=======
+                mIccRecords.setVoiceCallForwardingFlag(1, cffEnabled, info.number);
+                Rlog.d(LOG_TAG, "makeCFQueryResultMessage cffEnabled  = "+cffEnabled);
+                mPhone.setCallForwardingPreference(cffEnabled);
+>>>>>>> b9db8ee... Telephony: Call forwarding icon is shown after powerup.
             }
         }
 
@@ -1338,7 +1346,12 @@ public final class ImsPhoneMmiCode extends Handler implements MmiCode {
 
                 // Set unconditional CFF in SIM to false
                 if (mIccRecords != null) {
+<<<<<<< HEAD
                     mPhone.setVoiceCallForwardingFlag(1, false, null);
+=======
+                    mPhone.setCallForwardingPreference(false);
+                    mIccRecords.setVoiceCallForwardingFlag(1, false, null);
+>>>>>>> b9db8ee... Telephony: Call forwarding icon is shown after powerup.
                 }
             } else {
 
