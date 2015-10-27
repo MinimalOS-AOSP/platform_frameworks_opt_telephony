@@ -406,13 +406,11 @@ public class DctController extends Handler {
             Iterator<Integer> iterator = mRequestInfos.keySet().iterator();
             while (iterator.hasNext()) {
                 RequestInfo requestInfo = mRequestInfos.get(iterator.next());
-                if (requestInfo.executedPhoneId != INVALID_PHONE_INDEX) continue;
-                if (getRequestPhoneId(requestInfo.request) == requestedPhoneId) {
-                    mDcSwitchAsyncChannel[requestedPhoneId].connect(requestInfo);
+                if (getRequestPhoneId(requestInfo.request) == phoneId && !requestInfo.executed) {
+                    mDcSwitchAsyncChannel[phoneId].connect(requestInfo);
                 }
             }
         } else {
-            // otherwise detatch so we can try connecting to the high-priority phone
             mDcSwitchAsyncChannel[activePhoneId].disconnectAll();
         }
     }
