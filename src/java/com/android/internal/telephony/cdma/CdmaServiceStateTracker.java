@@ -586,6 +586,16 @@ public class CdmaServiceStateTracker extends ServiceStateTracker {
             subId = subIds[0];
         }
 
+        int combinedRegState = getCombinedRegState();
+        if (combinedRegState == ServiceState.STATE_OUT_OF_SERVICE) {
+            plmn = Resources.getSystem().getText(com.android.internal.
+                    R.string.lockscreen_carrier_default).toString();
+            if (DBG) log("updateSpnDisplay: radio is on but out " +
+                    "of service, set plmn='" + plmn + "'");
+        }
+
+        plmn = maybeUpdateHDTagForPlmn(showPlmn, plmn);
+
         if (mSubId != subId || !TextUtils.equals(plmn, mCurPlmn)) {
             // Allow A blank plmn, "" to set showPlmn to true. Previously, we
             // would set showPlmn to true only if plmn was not empty, i.e. was not
