@@ -1788,12 +1788,8 @@ public class GSMPhone extends PhoneBase {
             } else {
                 for (int i = 0, s = infos.length; i < s; i++) {
                     if ((infos[i].serviceClass & SERVICE_CLASS_VOICE) != 0) {
-<<<<<<< HEAD
-                        setVoiceCallForwardingFlag(1, (infos[i].status == 1),
-=======
                         setCallForwardingPreference(infos[i].status == 1);
                         r.setVoiceCallForwardingFlag(1, (infos[i].status == 1),
->>>>>>> b9db8ee... Telephony: Call forwarding icon is shown after powerup.
                             infos[i].number);
                         // should only have the one
                         break;

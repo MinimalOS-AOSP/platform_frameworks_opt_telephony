@@ -1266,12 +1266,8 @@ public class ImsPhone extends ImsPhoneBase {
                 IccRecords r = getIccRecords();
                 Cf cf = (Cf) ar.userObj;
                 if (cf.mIsCfu && ar.exception == null && r != null) {
-<<<<<<< HEAD
-                    setVoiceCallForwardingFlag(r, 1, msg.arg1 == 1, cf.mSetCfNumber);
-=======
                     setCallForwardingPreference(msg.arg1 == 1);
                     r.setVoiceCallForwardingFlag(1, msg.arg1 == 1, cf.mSetCfNumber);
->>>>>>> b9db8ee... Telephony: Call forwarding icon is shown after powerup.
                 }
                 sendResponse(cf.mOnComplete, null, ar.exception);
                 updateCallForwardStatus();

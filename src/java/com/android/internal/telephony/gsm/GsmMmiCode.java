@@ -1450,12 +1450,8 @@ public final class GsmMmiCode extends Handler implements MmiCode {
                         == CommandsInterface.SERVICE_CLASS_VOICE) {
             boolean cffEnabled = (info.status == 1);
             if (mIccRecords != null) {
-<<<<<<< HEAD
-                mPhone.setVoiceCallForwardingFlag(1, cffEnabled, info.number);
-=======
                 mIccRecords.setVoiceCallForwardingFlag(1, cffEnabled, info.number);
                 mPhone.setCallForwardingPreference(cffEnabled);
->>>>>>> b9db8ee... Telephony: Call forwarding icon is shown after powerup.
             }
         }
 
@@ -1489,12 +1485,8 @@ public final class GsmMmiCode extends Handler implements MmiCode {
 
                 // Set unconditional CFF in SIM to false
                 if (mIccRecords != null) {
-<<<<<<< HEAD
-                    mPhone.setVoiceCallForwardingFlag(1, false, null);
-=======
                     mPhone.setCallForwardingPreference(false);
                     mIccRecords.setVoiceCallForwardingFlag(1, false, null);
->>>>>>> b9db8ee... Telephony: Call forwarding icon is shown after powerup.
                 }
             } else {
 
